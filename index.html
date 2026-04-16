@@ -1,1208 +1,883 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>O Norte que Pulsa — Projeto de Branded Content | Mindray Brasil</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --blue:        #005290;
-      --blue-dark:   #003d6b;
-      --blue-light:  #e8f2fa;
-      --text:        #1a1a1a;
-      --muted:       #727171;
-      --border:      #d9e3ec;
-      --white:       #ffffff;
-      --section-bg:  #f5f8fb;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      color: var(--text);
-      background: var(--white);
-      line-height: 1.7;
-      font-size: 16px;
-    }
-
-    /* ─── HEADER ─── */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--blue);
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
-
-    .header-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-
-    .logo-mark {
-      width: 36px;
-      height: 36px;
-      background: var(--white);
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .logo-mark svg { width: 22px; height: 22px; }
-
-    .logo-text {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: 0.04em;
-    }
-
-    nav {
-      display: flex;
-      gap: 2rem;
-    }
-
-    nav a {
-      color: rgba(255,255,255,0.85);
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    nav a:hover { color: var(--white); }
-
-    .header-cta {
-      background: rgba(255,255,255,0.15);
-      color: var(--white) !important;
-      padding: 0.4rem 1rem;
-      border-radius: 3px;
-      border: 1px solid rgba(255,255,255,0.4);
-      transition: background 0.2s !important;
-    }
-
-    .header-cta:hover { background: rgba(255,255,255,0.25) !important; }
-
-    /* ─── HERO ─── */
-    .hero {
-      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 60%, #1a6aad 100%);
-      color: var(--white);
-      padding: 6rem 2rem 5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 70% 60% at 80% 50%, rgba(255,255,255,0.04) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 80% at 10% 80%, rgba(0,0,0,0.15) 0%, transparent 60%);
-    }
-
-    .hero-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 2rem;
-      padding: 0.3rem 0.9rem;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .hero-badge::before {
-      content: '';
-      width: 7px;
-      height: 7px;
-      background: #5dd4f0;
-      border-radius: 50%;
-      animation: pulse-dot 2s infinite;
-    }
-
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.7); }
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      color: #7dd3f8;
-    }
-
-    .hero-tagline {
-      font-size: 1.2rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.8);
-      margin-bottom: 2rem;
-      letter-spacing: 0.02em;
-    }
-
-    .hero-meta {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .hero-meta-item {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .hero-meta-label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 0.2rem;
-    }
-
-    .hero-meta-value {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.95);
-    }
-
-    .hero-right {
-      text-align: right;
-    }
-
-    .hero-pill {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 12px;
-      padding: 1.5rem 2rem;
-      text-align: center;
-      min-width: 180px;
-    }
-
-    .hero-pill-number {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #7dd3f8;
-      line-height: 1;
-      display: block;
-    }
-
-    .hero-pill-label {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.65);
-      margin-top: 0.3rem;
-    }
-
-    /* ─── SECTION BASE ─── */
-    section { padding: 5rem 2rem; }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 0.75rem;
-      padding-left: 1rem;
-      position: relative;
-    }
-
-    .section-label::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--blue);
-    }
-
-    h2 {
-      font-size: clamp(1.75rem, 3vw, 2.5rem);
-      font-weight: 700;
-      color: var(--blue-dark);
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.25rem;
-    }
-
-    .lead {
-      font-size: 1.1rem;
-      color: var(--muted);
-      max-width: 680px;
-      line-height: 1.8;
-    }
-
-    /* ─── SECTION 1 — O PROBLEMA ─── */
-    .section-problema { background: var(--white); }
-
-    .problema-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      margin-top: 3rem;
-    }
-
-    .problema-text p {
-      color: var(--muted);
-      line-height: 1.9;
-      margin-bottom: 1.2rem;
-    }
-
-    .problema-text p strong { color: var(--text); }
-
-    .stat-card {
-      background: var(--blue);
-      color: var(--white);
-      border-radius: 12px;
-      padding: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .stat-item { border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 1.25rem; }
-    .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
-
-    .stat-number {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #7dd3f8;
-      line-height: 1;
-    }
-
-    .stat-desc {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.75);
-      margin-top: 0.3rem;
-    }
-
-    /* ─── SECTION 2 — A IDEIA ─── */
-    .section-ideia { background: var(--section-bg); }
-
-    .ideia-intro {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 3rem;
-      align-items: start;
-      margin-bottom: 3rem;
-    }
-
-    .ideia-destaque {
-      background: var(--blue-light);
-      border-left: 4px solid var(--blue);
-      border-radius: 0 8px 8px 0;
-      padding: 1.25rem 1.5rem;
-      font-size: 1rem;
-      color: var(--blue-dark);
-      font-style: italic;
-      line-height: 1.7;
-    }
-
-    .characters-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-
-    .character-card {
-      background: var(--white);
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      transition: box-shadow 0.25s, transform 0.25s;
-    }
-
-    .character-card:hover {
-      box-shadow: 0 12px 32px rgba(0,82,144,0.12);
-      transform: translateY(-4px);
-    }
-
-    .character-stripe {
-      height: 5px;
-      background: var(--blue);
-    }
-
-    .character-card:nth-child(2) .character-stripe { background: #1a8cbf; }
-    .character-card:nth-child(3) .character-stripe { background: #00a878; }
-
-    .character-body {
-      padding: 1.75rem;
-    }
-
-    .character-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--blue-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-
-    .character-card:nth-child(2) .character-icon { background: #e0f4fb; }
-    .character-card:nth-child(3) .character-icon { background: #e6f7f2; }
-
-    .character-icon svg { width: 24px; height: 24px; }
-
-    .character-title {
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--blue);
-      margin-bottom: 0.3rem;
-    }
-
-    .character-card:nth-child(2) .character-title { color: #1a8cbf; }
-    .character-card:nth-child(3) .character-title { color: #00a878; }
-
-    .character-name {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.75rem;
-    }
-
-    .character-desc {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    /* ─── SECTION 3 — POR QUÊ ─── */
-    .section-porque { background: var(--white); }
-
-    .porque-top {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-      margin-bottom: 2.5rem;
-    }
-
-    .reasons-list { list-style: none; margin-top: 1.5rem; }
-
-    .reasons-list li {
-      display: flex;
-      gap: 1rem;
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .reasons-list li:last-child { border-bottom: none; }
-
-    .reason-num {
-      flex-shrink: 0;
-      width: 28px;
-      height: 28px;
-      background: var(--blue);
-      color: var(--white);
-      border-radius: 50%;
-      font-size: 0.78rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 2px;
-    }
-
-    .reason-text {
-      font-size: 0.95rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .reason-text strong { color: var(--text); }
-
-    .highlight-box {
-      background: var(--blue);
-      color: var(--white);
-      border-radius: 12px;
-      padding: 2.5rem;
-    }
-
-    .highlight-box h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: #7dd3f8;
-    }
-
-    .highlight-box p {
-      font-size: 0.95rem;
-      line-height: 1.8;
-      color: rgba(255,255,255,0.85);
-    }
-
-    .tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1.25rem;
-    }
-
-    .tag {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.9);
-      padding: 0.25rem 0.75rem;
-      border-radius: 2rem;
-      font-size: 0.78rem;
-      font-weight: 500;
-    }
-
-    /* ─── SECTION 4 — REALIZADOR ─── */
-    .section-realizador { background: var(--section-bg); }
-
-    .realizador-grid {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 3rem;
-      align-items: start;
-      margin-top: 2.5rem;
-    }
-
-    .realizador-avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: var(--blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      border: 4px solid rgba(0,82,144,0.2);
-    }
-
-    .realizador-avatar svg { width: 54px; height: 54px; }
-
-    .realizador-name {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--blue-dark);
-      margin-bottom: 0.25rem;
-    }
-
-    .realizador-role {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
-
-    .credentials {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .credential-item {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem 1.25rem;
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-    }
-
-    .credential-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--blue);
-      margin-top: 6px;
-      flex-shrink: 0;
-    }
-
-    .credential-text {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .credential-text strong { color: var(--text); display: block; }
-
-    /* ─── SECTION 5 — FORMATO ─── */
-    .section-formato { background: var(--white); }
-
-    .formato-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 2.5rem;
-    }
-
-    .formato-card {
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
-      transition: border-color 0.2s;
-    }
-
-    .formato-card.featured {
-      border-color: var(--blue);
-      background: var(--blue-light);
-    }
-
-    .formato-card-badge {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 0.2rem 0.6rem;
-      border-radius: 2rem;
-      background: var(--blue);
-      color: var(--white);
-      margin-bottom: 1rem;
-    }
-
-    .formato-card-badge.alt {
-      background: var(--muted);
-    }
-
-    .formato-card h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--blue-dark);
-      margin-bottom: 0.75rem;
-    }
-
-    .formato-list {
-      list-style: none;
-      margin-top: 1rem;
-    }
-
-    .formato-list li {
-      display: flex;
-      gap: 0.75rem;
-      padding: 0.5rem 0;
-      font-size: 0.9rem;
-      color: var(--muted);
-      border-bottom: 1px solid rgba(0,82,144,0.08);
-    }
-
-    .formato-list li:last-child { border-bottom: none; }
-
-    .formato-list li::before {
-      content: '→';
-      color: var(--blue);
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    /* ─── SECTION 6 — PRÓXIMOS PASSOS ─── */
-    .section-proximos { background: var(--blue); color: var(--white); }
-
-    .proximos-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .proximos-inner h2 { color: var(--white); }
-    .proximos-inner .section-label { color: rgba(255,255,255,0.6); }
-    .proximos-inner .section-label::before { background: rgba(255,255,255,0.6); }
-
-    .proximos-inner .lead { color: rgba(255,255,255,0.75); }
-
-    .steps { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
-
-    .step {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 10px;
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      transition: background 0.2s;
-    }
-
-    .step:hover { background: rgba(255,255,255,0.13); }
-
-    .step-num {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: rgba(255,255,255,0.25);
-      line-height: 1;
-      width: 36px;
-      flex-shrink: 0;
-    }
-
-    .step-content h4 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 0.25rem;
-    }
-
-    .step-content p {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.65);
-      line-height: 1.6;
-    }
-
-    .cta-block { margin-top: 2.5rem; }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--white);
-      color: var(--blue);
-      font-weight: 700;
-      font-size: 0.9rem;
-      padding: 0.85rem 2rem;
-      border-radius: 4px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-primary:hover { background: #e8f2fa; transform: translateY(-1px); }
-
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: transparent;
-      color: rgba(255,255,255,0.85);
-      font-weight: 600;
-      font-size: 0.9rem;
-      padding: 0.85rem 2rem;
-      border-radius: 4px;
-      text-decoration: none;
-      border: 1.5px solid rgba(255,255,255,0.35);
-      transition: border-color 0.2s, color 0.2s;
-      margin-left: 1rem;
-    }
-
-    .btn-outline:hover {
-      border-color: rgba(255,255,255,0.7);
-      color: var(--white);
-    }
-
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--blue-dark);
-      color: rgba(255,255,255,0.5);
-      padding: 2.5rem 2rem;
-    }
-
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .footer-brand-name {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--white);
-    }
-
-    .footer-info {
-      font-size: 0.8rem;
-      line-height: 1.7;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .footer-links a {
-      color: rgba(255,255,255,0.45);
-      text-decoration: none;
-      font-size: 0.78rem;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover { color: var(--white); }
-
-    /* ─── DIVIDER ─── */
-    .divider {
-      width: 60px;
-      height: 3px;
-      background: var(--blue);
-      border-radius: 2px;
-      margin-bottom: 2rem;
-    }
-
-    .section-proximos .divider { background: rgba(255,255,255,0.3); }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 900px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-right { display: none; }
-      .problema-grid,
-      .ideia-intro,
-      .porque-top,
-      .proximos-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .characters-grid { grid-template-columns: 1fr; }
-      .realizador-grid { grid-template-columns: 1fr; }
-      .credentials { grid-template-columns: 1fr; }
-      .formato-grid { grid-template-columns: 1fr; }
-      nav { display: none; }
-    }
-
-    @media (max-width: 600px) {
-      section { padding: 3rem 1.25rem; }
-      .hero { padding: 4rem 1.25rem 3.5rem; }
-      .header-inner { padding: 0 1.25rem; }
-    }
-    /* ===== VIDEO FIX ===== */
-.video-container {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%;
-  margin: 2rem 0 3rem;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #000;
-}
-
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Norte que Pulsa · Mindray Brasil</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --azul:      #1A3A5C;
+    --azul-med:  #0066A1;
+    --azul-claro:#4DA6D5;
+    --cinza:     #555;
+    --fundo:     #F5F7FA;
+    --branco:    #fff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: var(--azul);
+    background: var(--branco);
+    line-height: 1.65;
+  }
+
+  /* ── NAV ─────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(26,58,92,.95);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 56px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo svg { width: 28px; height: 28px; }
+  .nav-logo span { color: #fff; font-weight: 700; font-size: 15px; letter-spacing: .5px; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    color: rgba(255,255,255,.75); text-decoration: none;
+    font-size: 13px; letter-spacing: .3px; transition: color .2s;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta {
+    background: var(--azul-claro); color: #fff !important;
+    padding: 6px 18px; border-radius: 20px; font-weight: 600;
+  }
+
+  /* ── HERO ────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(150deg, var(--azul) 0%, #0d2540 60%, #0a1e35 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 100px 24px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 40%, rgba(77,166,213,.12) 0%, transparent 60%);
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+    border-radius: 24px; padding: 6px 18px; margin-bottom: 32px;
+    font-size: 12px; color: var(--azul-claro); letter-spacing: 1.5px; font-weight: 600;
+    text-transform: uppercase;
+  }
+  .hero-badge::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--azul-claro); animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+  .hero h1 {
+    font-size: clamp(48px, 8vw, 88px);
+    font-weight: 800; color: #fff; line-height: 1.0;
+    letter-spacing: -1px; margin-bottom: 8px;
+  }
+  .hero h1 span { color: var(--azul-claro); }
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 20px);
+    color: rgba(255,255,255,.65); margin-bottom: 48px;
+    letter-spacing: .3px;
+  }
+  .hero-meta {
+    display: flex; gap: 40px; justify-content: center;
+    margin-bottom: 56px; flex-wrap: wrap;
+  }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 11px; color: rgba(255,255,255,.45); letter-spacing: 1px; text-transform: uppercase; }
+  .hero-meta-value { font-size: 15px; font-weight: 700; color: #fff; margin-top: 2px; }
+  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .btn-primary {
+    background: var(--azul-claro); color: #fff;
+    padding: 14px 36px; border-radius: 30px; border: none;
+    font-size: 15px; font-weight: 700; cursor: pointer;
+    text-decoration: none; transition: all .2s;
+    box-shadow: 0 8px 24px rgba(77,166,213,.4);
+  }
+  .btn-primary:hover { background: #3a94c5; transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: #fff;
+    padding: 14px 36px; border-radius: 30px;
+    border: 1.5px solid rgba(255,255,255,.35);
+    font-size: 15px; font-weight: 600; cursor: pointer;
+    text-decoration: none; transition: all .2s;
+  }
+  .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.06); }
+  .hero-scroll {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,.4); font-size: 12px; letter-spacing: 1px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .hero-scroll::after {
+    content: ''; width: 1px; height: 32px;
+    background: linear-gradient(to bottom, rgba(255,255,255,.4), transparent);
+  }
+
+  /* ── SECTIONS ────────────────────────── */
+  section { padding: 96px 24px; }
+  .container { max-width: 960px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px; font-weight: 700; color: var(--azul-claro);
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(28px, 4vw, 40px); font-weight: 800;
+    color: var(--azul); line-height: 1.15; margin-bottom: 8px;
+  }
+  .section-rule {
+    width: 48px; height: 3px; background: var(--azul-claro);
+    border-radius: 2px; margin-bottom: 32px;
+  }
+  .section-intro {
+    font-size: 17px; color: var(--cinza); max-width: 680px; margin-bottom: 48px;
+    line-height: 1.7;
+  }
+
+  /* ── STATS ───────────────────────────── */
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px; margin-bottom: 56px;
+  }
+  .stat-card {
+    background: var(--fundo); border-radius: 12px;
+    padding: 24px 20px; border-left: 3px solid var(--azul-claro);
+  }
+  .stat-number {
+    font-size: 36px; font-weight: 900; color: var(--azul);
+    line-height: 1; margin-bottom: 4px;
+  }
+  .stat-number span { font-size: 20px; }
+  .stat-label { font-size: 13px; color: var(--cinza); line-height: 1.4; }
+
+  /* ── CHARTS ──────────────────────────── */
+  .charts-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px;
+  }
+  @media(max-width:640px){ .charts-grid { grid-template-columns: 1fr; } }
+  .chart-card {
+    background: var(--fundo); border-radius: 16px; padding: 28px;
+  }
+  .chart-title {
+    font-size: 13px; font-weight: 700; color: var(--azul);
+    margin-bottom: 20px; letter-spacing: .2px;
+  }
+  .chart-full {
+    background: var(--fundo); border-radius: 16px;
+    padding: 28px; margin-bottom: 16px;
+  }
+  .chart-source {
+    font-size: 11px; color: #aaa; text-align: right;
+    margin-top: 8px; font-style: italic;
+  }
+
+  /* ── PERSONAS ────────────────────────── */
+  .personas-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap: 24px; margin-top: 40px;
+  }
+  .persona-card {
+    border-radius: 16px; padding: 32px;
+    border-top: 4px solid;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .persona-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(26,58,92,.12); }
+  .persona-card:nth-child(1) { border-color: var(--azul); background: #EEF3F8; }
+  .persona-card:nth-child(2) { border-color: var(--azul-med); background: #EBF4F9; }
+  .persona-card:nth-child(3) { border-color: #2E8B57; background: #EBF4EF; }
+  .persona-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 8px;
+    color: var(--azul-med);
+  }
+  .persona-card:nth-child(3) .persona-tag { color: #2E8B57; }
+  .persona-title {
+    font-size: 20px; font-weight: 800; color: var(--azul);
+    margin-bottom: 12px; line-height: 1.2;
+  }
+  .persona-text { font-size: 14px; color: var(--cinza); line-height: 1.65; }
+
+  /* ── QUOTE ───────────────────────────── */
+  .quote-block {
+    background: var(--azul); border-radius: 20px;
+    padding: 48px; margin: 56px 0; text-align: center;
+  }
+  .quote-block blockquote {
+    font-size: clamp(18px, 2.5vw, 24px); font-weight: 300;
+    color: rgba(255,255,255,.9); font-style: italic; line-height: 1.6;
+    max-width: 720px; margin: 0 auto;
+  }
+  .quote-block blockquote strong { font-weight: 700; color: #fff; font-style: normal; }
+
+  /* ── REASONS ─────────────────────────── */
+  .reasons-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 20px; margin-top: 40px;
+  }
+  .reason-card {
+    background: var(--fundo); border-radius: 12px; padding: 28px 24px;
+  }
+  .reason-num {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--azul); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800; margin-bottom: 16px;
+  }
+  .reason-title { font-size: 15px; font-weight: 700; color: var(--azul); margin-bottom: 8px; }
+  .reason-text { font-size: 13px; color: var(--cinza); line-height: 1.6; }
+
+  /* ── CREDENTIALS ─────────────────────── */
+  .credentials { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
+  .cred-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    background: var(--fundo); border-radius: 10px; padding: 18px 20px;
+  }
+  .cred-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--azul-claro); margin-top: 6px; flex-shrink: 0;
+  }
+  .cred-label { font-size: 13px; font-weight: 700; color: var(--azul); margin-bottom: 2px; }
+  .cred-text { font-size: 13px; color: var(--cinza); }
+
+  /* ── DELIVERABLES ────────────────────── */
+  .deliverables-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+  @media(max-width:580px){ .deliverables-grid { grid-template-columns: 1fr; } }
+  .deliv-card {
+    border-radius: 16px; padding: 32px;
+    border: 1.5px solid rgba(26,58,92,.12);
+  }
+  .deliv-badge {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 12px; margin-bottom: 16px;
+  }
+  .deliv-badge.main { background: var(--azul); color: #fff; }
+  .deliv-badge.alt  { background: var(--fundo); color: var(--azul); }
+  .deliv-title { font-size: 20px; font-weight: 800; color: var(--azul); margin-bottom: 6px; }
+  .deliv-sub { font-size: 13px; color: var(--azul-claro); font-weight: 600; margin-bottom: 16px; }
+  .deliv-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .deliv-list li { font-size: 13px; color: var(--cinza); padding-left: 16px; position: relative; }
+  .deliv-list li::before { content: '→'; position: absolute; left: 0; color: var(--azul-claro); }
+
+  /* ── NEXT STEPS ──────────────────────── */
+  .steps { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
+  .step {
+    display: flex; gap: 24px; align-items: flex-start;
+    background: var(--fundo); border-radius: 12px; padding: 24px 28px;
+  }
+  .step-num {
+    font-size: 32px; font-weight: 900; color: rgba(26,58,92,.15);
+    line-height: 1; flex-shrink: 0; width: 40px;
+  }
+  .step-title { font-size: 15px; font-weight: 700; color: var(--azul); margin-bottom: 4px; }
+  .step-text { font-size: 13px; color: var(--cinza); }
+
+  /* ── CTA ─────────────────────────────── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--azul) 0%, #0d2540 100%);
+    padding: 96px 24px; text-align: center;
+  }
+  .cta-section h2 {
+    font-size: clamp(28px, 4vw, 44px); font-weight: 800;
+    color: #fff; margin-bottom: 16px;
+  }
+  .cta-section p { font-size: 17px; color: rgba(255,255,255,.65); margin-bottom: 40px; }
+  .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  /* ── FOOTER ──────────────────────────── */
+  footer {
+    background: #0a1e35; padding: 40px 24px; text-align: center;
+  }
+  .footer-logo { font-size: 13px; color: rgba(255,255,255,.4); margin-bottom: 8px; }
+  .footer-sources { font-size: 11px; color: rgba(255,255,255,.25); line-height: 1.8; }
+
+  /* ── BG SECTIONS ─────────────────────── */
+  .bg-fundo { background: var(--fundo); }
+
+  /* ── RESPONSIVE NAV ──────────────────── */
+  @media(max-width:720px){
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- ─── HEADER ─── -->
-  <header>
-    <div class="header-inner">
-      <a class="logo" href="#">
-        <div class="logo-mark">
-          <!-- Mindray-style heart + wave icon -->
-          <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 13H6L8 9L11 16L13 11L15 13H19" stroke="#005290" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M11 4C11 4 7 2 5 5C3 8 5 11 7 12" stroke="#005290" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M11 4C11 4 15 2 17 5C19 8 17 11 15 12" stroke="#005290" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <span class="logo-text">MINDRAY</span>
-      </a>
-      <nav>
-        <a href="#problema">O Problema</a>
-        <a href="#ideia">A Ideia</a>
-        <a href="#realizador">O Realizador</a>
-        <a href="#formato">Formato</a>
-        <a href="#proximos" class="header-cta">Próximos Passos</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- ─── HERO ─── -->
-  <section class="hero" aria-label="Apresentação">
-    <div class="hero-inner">
-      <div>
-        <div class="hero-badge">Projeto de Branded Content · Abril 2026</div>
-        <h1>O Norte<br />que <em>Pulsa</em></h1>
-        <p class="hero-tagline">Vidas reais. Tecnologia que alcança.</p>
-        <div class="hero-meta">
-          <div class="hero-meta-item">
-            <span class="hero-meta-label">Proposta para</span>
-            <span class="hero-meta-value">Mindray Brasil</span>
-          </div>
-          <div class="hero-meta-item">
-            <span class="hero-meta-label">Realizador</span>
-            <span class="hero-meta-value">João Werneck</span>
-          </div>
-          <div class="hero-meta-item">
-            <span class="hero-meta-label">Formato</span>
-            <span class="hero-meta-value">Documentário / Série</span>
-          </div>
-        </div>
-      </div>
-      <div class="hero-right">
-        <div class="hero-pill">
-          <span class="hero-pill-number">3</span>
-          <p class="hero-pill-label">personagens reais<br />do Norte do Brasil</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 1. O PROBLEMA ─── -->
-  <section class="section-problema" id="problema">
-    <div class="container">
-      <span class="section-label">01 · Contexto</span>
-      <h2>O problema que poucos<br />conseguem mostrar</h2>
-      <div class="divider"></div>
-      <div class="problema-grid">
-        <div class="problema-text">
-          <p>O Brasil tem <strong>8,5 milhões de km²</strong>. Boa parte desse território está no Norte — uma região onde chegar a um laboratório pode significar <strong>dias de barco, estradas de chão e incerteza climática</strong>.</p>
-          <p>Para quem vive lá, um exame de sangue não é uma inconveniência. É uma expedição.</p>
-          <p>Esse é o contexto onde a Mindray opera. E é um contexto que <strong>quase ninguém documenta com profundidade</strong>.</p>
-          <p>A proposta deste projeto é fazer exatamente isso.</p>
-        </div>
-        <div class="stat-card" aria-label="Dados de contexto">
-          <div class="stat-item">
-            <div class="stat-number">8,5 mi</div>
-            <div class="stat-desc">km² de território brasileiro — grande parte no Norte</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">Dias</div>
-            <div class="stat-desc">de deslocamento para alcançar um serviço de saúde em comunidades remotas</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">3</div>
-            <div class="stat-desc">comunidades retratadas: ribeirinha, indígena e quilombola</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 2. A IDEIA ─── -->
-  <section class="section-ideia" id="ideia">
-    <div class="container">
-      <span class="section-label">02 · A Proposta</span>
-      <h2>A ideia</h2>
-      <div class="divider"></div>
-      <div class="ideia-intro">
-  <div>
-    <p class="lead">"O Norte que Pulsa" é um filme documental de médio-metragem — ou uma série em três capítulos — que acompanha <strong>três personagens reais do Norte do Brasil</strong>, cada um vivendo uma relação diferente com saúde, distância e tecnologia.</p>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg viewBox="0 0 28 28" fill="none">
+      <rect width="28" height="28" rx="6" fill="rgba(255,255,255,.15)"/>
+      <path d="M6 14 Q14 6 22 14 Q14 22 6 14Z" stroke="#4DA6D5" stroke-width="1.5" fill="none"/>
+      <circle cx="14" cy="14" r="3" fill="#4DA6D5"/>
+    </svg>
+    <span>MINDRAY</span>
   </div>
-  <div class="ideia-destaque">
-    "Não é um filme sobre a Mindray. É um filme sobre pessoas. A tecnologia aparece como o que ela é: uma ferramenta que muda vidas em lugares onde nada chega com facilidade."
+  <div class="nav-links">
+    <a href="#video-depoimento">O Depoimento</a>
+    <a href="#ideia">A Proposta</a>
+    <a href="#relevancia">Relevância</a>
+    <a href="#realizador">Realizador</a>
+    <a href="#conversa" class="nav-cta">Iniciar conversa</a>
   </div>
-</div>
+</nav>
 
-<div class="video-container">
-  <iframe 
-   src="https://www.youtube.com/embed/-hVx1De-wXE?rel=0&modestbranding=1&playsinline=1"
-  title="O Norte que Pulsa"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowfullscreen>
-</iframe>
-    title="O Norte que Pulsa"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen>
-  </iframe>
-</div>
-      <div class="characters-grid">
-        <!-- Personagem 1 -->
-        <div class="character-card">
-          <div class="character-stripe"></div>
-          <div class="character-body">
-            <div class="character-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#005290" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4.5 8-11a8 8 0 1 0-16 0c0 6.5 8 11 8 11z"/>
-                <circle cx="12" cy="11" r="3"/>
-              </svg>
-            </div>
-            <div class="character-title">Ribeirinho</div>
-            <div class="character-name">O tempo que não volta</div>
-            <p class="character-desc">Um morador de comunidade ribeirinha no Amazonas. Sua rotina envolve o rio como estrada, a floresta como farmácia e a incerteza como companheira. A chegada de um exame rápido e confiável muda a relação dele com a saúde — e com o tempo.</p>
-          </div>
-        </div>
-        <!-- Personagem 2 -->
-        <div class="character-card">
-          <div class="character-stripe"></div>
-          <div class="character-body">
-            <div class="character-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#1a8cbf" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="8" r="4"/>
-                <path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
-                <path d="M3 12h2M19 12h2M12 3v2M12 19v2"/>
-              </svg>
-            </div>
-            <div class="character-title">Indígena</div>
-            <div class="character-name">A aldeia que não pode esperar</div>
-            <p class="character-desc">Um membro de uma comunidade indígena no interior do Pará ou Tocantins. Entre o saber ancestral e a medicina ocidental, existe uma distância que a logística tornou ainda maior. Este personagem representa a complexidade de cuidar sem abandonar a identidade.</p>
-          </div>
-        </div>
-        <!-- Personagem 3 -->
-        <div class="character-card">
-          <div class="character-stripe"></div>
-          <div class="character-body">
-            <div class="character-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#00a878" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                <polyline points="9 22 9 12 15 12 15 22"/>
-              </svg>
-            </div>
-            <div class="character-title">Quilombola</div>
-            <div class="character-name">A resistência que também adoece</div>
-            <p class="character-desc">Uma comunidade quilombola no interior do Norte ou Nordeste. Historicamente negligenciada pelo sistema de saúde, essa população carrega marcas de ausência do Estado. A chegada de tecnologia que funciona no próprio local é mais do que praticidade — é reconhecimento.</p>
-          </div>
-        </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Proposta de Branded Content · Mindray Brasil · 2026</div>
+  <h1>O Norte<br><span>que Pulsa</span></h1>
+  <p class="hero-sub">Uma ideia de documentário. Uma história que já acontece.</p>
+  <p style="font-size:clamp(14px,1.5vw,17px); color:rgba(255,255,255,.52); max-width:560px; text-align:center; line-height:1.8; margin-bottom:44px; margin-top:-12px;">
+    Esta é uma proposta de filme documental para a Mindray Brasil. A ideia nasceu durante uma captação no Norte do país — a partir do depoimento espontâneo de uma cliente que usa os equipamentos da marca no seu laboratório. O que você vai ver aqui é esse momento real, e o projeto que ele inspirou.
+  </p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Proposta para</div>
+      <div class="hero-meta-value">Mindray Brasil</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Realizador</div>
+      <div class="hero-meta-value">João Werneck</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Formato</div>
+      <div class="hero-meta-value">Documentário / Série</div>
+    </div>
+  </div>
+  <div class="hero-buttons">
+    <a href="#conversa" class="btn-primary">Iniciar conversa →</a>
+    <a href="#ideia" class="btn-outline">Ver proposta</a>
+  </div>
+  <div class="hero-scroll">scroll</div>
+</section>
+
+<!-- DEPOIMENTO EM VÍDEO (movido para antes dos dados) -->
+<section id="video-depoimento" style="background:#0a1e35; padding:80px 24px; text-align:center;">
+  <div class="container">
+    <div class="section-label" style="color:var(--azul-claro);">O ponto de partida · Depoimento captado em campo</div>
+    <h2 style="font-size:clamp(24px,3.5vw,36px); font-weight:800; color:#fff; margin-bottom:16px; line-height:1.2;">Ouça o que gerou essa ideia.</h2>
+    <p style="font-size:16px; color:rgba(255,255,255,.6); max-width:600px; margin:0 auto 40px; line-height:1.8;">
+      Durante uma captação no Amazonas, o depoimento espontâneo de uma dona de clínicas — usuária dos equipamentos Mindray — trouxe uma pergunta que não saiu mais da cabeça: <em style="color:rgba(255,255,255,.85);">quantas histórias assim existem no Norte, e ninguém conta?</em>
+    </p>
+    <div style="max-width:780px; margin:0 auto; border-radius:16px; overflow:hidden; box-shadow:0 32px 80px rgba(0,0,0,.6); aspect-ratio:16/9;">
+      <iframe width="100%" height="100%"
+        src="https://www.youtube.com/embed/-hVx1De-wXE?rel=0&modestbranding=1&color=white"
+        title="Depoimento — Dona de clínicas · Região Amazônica · Equipamentos Mindray"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen style="display:block;"></iframe>
+    </div>
+    <p style="font-size:12px; color:rgba(255,255,255,.3); margin-top:20px; font-style:italic;">
+      Depoimento original · Região Amazônica · Equipamentos Mindray · 2025
+    </p>
+  </div>
+</section>
+
+<!-- CONTEXTO -->
+<section id="contexto">
+  <div class="container">
+    <div class="section-label">01 · Contexto</div>
+    <h2 class="section-title">O território<br>que pede para ser contado</h2>
+    <div class="section-rule"></div>
+    <p class="section-intro">
+      A fala dela não é um caso isolado. O Norte do Brasil é uma região onde a presença de tecnologia de diagnóstico não é luxo — é o que separa o tratamento do silêncio. Para entender por que este documentário precisa existir, é preciso entender o território.
+    </p>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">60<span>%</span></div>
+        <div class="stat-label">dos municípios do Norte sem acesso a saúde especializada</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">632</div>
+        <div class="stat-label">territórios quilombolas reais na Amazônia — 280% acima do dado oficial</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">753<span>mil</span></div>
+        <div class="stat-label">indígenas no Norte — 44,5% de toda a população indígena do Brasil</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">600<span>mil</span></div>
+        <div class="stat-label">pessoas afetadas pela seca de 2023 no Amazonas</div>
       </div>
     </div>
-  </section>
 
-  <!-- ─── 3. POR QUE ─── -->
-  <section class="section-porque" id="porque">
-    <div class="container">
-      <span class="section-label">03 · Relevância</span>
-      <h2>Por que a Mindray<br />e por que agora</h2>
-      <div class="divider"></div>
-      <div class="porque-top">
-        <div>
-          <p class="lead">A Mindray já está presente nesse território. Já tem histórias acontecendo por causa de sua tecnologia. Falta contá-las.</p>
-          <ul class="reasons-list">
-            <li>
-              <div class="reason-num">1</div>
-              <div class="reason-text"><strong>Pressão por ESG com evidência.</strong> Marcas globais com presença no Brasil enfrentam demanda crescente por responsabilidade social comprovada — não apenas declarada.</div>
-            </li>
-            <li>
-              <div class="reason-num">2</div>
-              <div class="reason-text"><strong>Formato de maior engajamento.</strong> O branded content documental tem a maior taxa de compartilhamento e menor resistência de audiência no ambiente digital.</div>
-            </li>
-            <li>
-              <div class="reason-num">3</div>
-              <div class="reason-text"><strong>Demanda crescente pelo tema.</strong> Amazônia e povos tradicionais têm audiência crescente em festivais, plataformas de streaming e mídia internacional.</div>
-            </li>
-            <li>
-              <div class="reason-num">4</div>
-              <div class="reason-text"><strong>Ativo audiovisual pioneiro.</strong> A Mindray ainda não tem um ativo audiovisual dessa natureza no Brasil — este filme seria o primeiro no segmento.</div>
-            </li>
-          </ul>
-        </div>
-        <div class="highlight-box">
-          <h3>Distribuição estratégica</h3>
-          <p>O conteúdo tem potencial de circulação em múltiplos canais simultaneamente — do institucional ao editorial, do digital ao festival.</p>
-          <div class="tag-list">
-            <span class="tag">Streaming</span>
-            <span class="tag">Festivais</span>
-            <span class="tag">LinkedIn</span>
-            <span class="tag">YouTube</span>
-            <span class="tag">Imprensa</span>
-            <span class="tag">Eventos</span>
-            <span class="tag">Uso institucional</span>
-          </div>
-        </div>
+    <!-- Charts -->
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-title">Territórios quilombolas: oficial vs. real</div>
+        <canvas id="chartQuilombola" height="220"></canvas>
+        <div class="chart-source">Fonte: ISA / CONAQ, 2025</div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Pop. indígena por região — Brasil</div>
+        <canvas id="chartIndigena" height="220"></canvas>
+        <div class="chart-source">Fonte: IBGE, Censo 2022</div>
       </div>
     </div>
-  </section>
 
-  <!-- ─── 4. REALIZADOR ─── -->
-  <section class="section-realizador" id="realizador">
-    <div class="container">
-      <span class="section-label">04 · Equipe</span>
-      <h2>Por que este realizador</h2>
-      <div class="divider"></div>
-      <p class="lead">João Werneck não é um fotógrafo que decidiu fazer documentário. É um profissional com histórico comprovado exatamente nos mundos que este projeto atravessa.</p>
-      <div class="realizador-grid">
-        <div class="realizador-avatar">
-          <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="27" cy="20" r="11" stroke="rgba(255,255,255,0.9)" stroke-width="2.5"/>
-            <path d="M8 46c0-10.5 8.5-19 19-19s19 8.5 19 19" stroke="rgba(255,255,255,0.9)" stroke-width="2.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div>
-          <div class="realizador-name">João Werneck</div>
-          <div class="realizador-role">Fotógrafo &amp; Diretor de Fotografia · Abril 2026</div>
-          <div class="credentials">
-            <div class="credential-item">
-              <div class="credential-dot"></div>
-              <div class="credential-text">
-                <strong>Mindray Brasil</strong>
-                Trabalhou diretamente em projeto anterior — conhece a marca, a cultura e as pessoas.
-              </div>
-            </div>
-            <div class="credential-item">
-              <div class="credential-dot"></div>
-              <div class="credential-text">
-                <strong>Comunidades indígenas</strong>
-                Documentou xavantes e krahô em rituais de passagem, a convite de caciques.
-              </div>
-            </div>
-            <div class="credential-item">
-              <div class="credential-dot"></div>
-              <div class="credential-text">
-                <strong>Amazônia</strong>
-                Atuou em projetos de conservação ambiental e comunidades pesqueiras da região.
-              </div>
-            </div>
-            <div class="credential-item">
-              <div class="credential-dot"></div>
-              <div class="credential-text">
-                <strong>Branded Content</strong>
-                Dirigiu e fotografou campanhas de vídeo documental para marcas como Nescau.
-              </div>
-            </div>
-            <div class="credential-item" style="grid-column: 1 / -1;">
-              <div class="credential-dot"></div>
-              <div class="credential-text">
-                <strong>Projeto "Ndénde" (em andamento)</strong>
-                Documentário sobre baianas de acarajé com visada a editais e exposições museais — demonstrando comprometimento com narrativas de longa duração sobre culturas tradicionais brasileiras.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="chart-full">
+      <div class="chart-title">Municípios sem acesso adequado a saúde especializada — por região (%)</div>
+      <canvas id="chartSaude" height="160"></canvas>
+      <div class="chart-source">Fonte: Medicina S/A, 2023</div>
     </div>
-  </section>
 
-  <!-- ─── 5. FORMATO ─── -->
-  <section class="section-formato" id="formato">
-    <div class="container">
-      <span class="section-label">05 · Entregáveis</span>
-      <h2>Formato e entregáveis</h2>
-      <div class="divider"></div>
-      <div class="formato-grid">
-        <div class="formato-card featured">
-          <div class="formato-card-badge">Proposta principal</div>
-          <h3>Filme documental único<br /><span style="color: var(--muted); font-weight: 400; font-size: 0.95rem;">30–45 minutos</span></h3>
-          <p style="font-size: 0.9rem; color: var(--muted); margin-top: 0.5rem;">Roteiro estruturado em três arcos narrativos — um por personagem — produzido em locações reais no Norte do Brasil.</p>
-          <ul class="formato-list">
-            <li>Filme para distribuição digital, festivais e uso institucional</li>
-            <li>Versão recortada (5–8 min) para redes sociais e eventos</li>
-            <li>Fotografias de making-of para campanha de divulgação</li>
-          </ul>
-        </div>
-        <div class="formato-card">
-          <div class="formato-card-badge alt">Desdobramento possível</div>
-          <h3>Série em 3 capítulos<br /><span style="color: var(--muted); font-weight: 400; font-size: 0.95rem;">Conteúdo recorrente</span></h3>
-          <p style="font-size: 0.9rem; color: var(--muted); margin-top: 0.5rem;">O mesmo material estruturado em três episódios independentes, com lançamento sequencial para presença digital prolongada.</p>
-          <ul class="formato-list">
-            <li>Cada episódio centrado em um personagem</li>
-            <li>Lançamentos sequenciais para engajamento contínuo</li>
-            <li>Maior flexibilidade para múltiplas plataformas</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+    <p style="font-size:16px; color:var(--cinza); max-width:680px;">
+      Esse é o contexto onde a Mindray opera. E é um contexto que quase ninguém documenta com profundidade.
+      <strong style="color:var(--azul);">A proposta deste projeto é fazer exatamente isso.</strong>
+    </p>
+  </div>
+</section>
 
-  <!-- ─── 6. PRÓXIMOS PASSOS ─── -->
-  <section class="section-proximos" id="proximos">
-    <div class="container proximos-inner">
+<!-- ORIGEM / PONTO DE PARTIDA -->
+<section id="origem" style="background: linear-gradient(160deg, #eaf1f8 0%, #ddeaf5 100%); padding: 96px 24px;">
+  <div class="container">
+    <div class="section-label">A centelha · O momento que originou tudo</div>
+    <h2 class="section-title">Um hemograma.<br>Uma sala no Amazonas.<br>Uma ideia nasce.</h2>
+    <div class="section-rule"></div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; margin-top:40px;">
       <div>
-        <span class="section-label">06 · Conversa</span>
-        <h2>Próximos passos</h2>
-        <div class="divider"></div>
-        <p class="lead">Esta é uma proposta conceitual para abertura de conversa. Toda a parte criativa, de produção e de estratégia de distribuição pode ser apresentada em etapa seguinte, após alinhamento inicial.</p>
-        <div class="cta-block">
-          <a href="mailto:contato@joaowerneck.com" class="btn-primary">
-            Iniciar conversa
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p style="font-size:16px; color:var(--cinza); line-height:1.78; margin-bottom:24px;">
+          Ela é dona de clínicas na região amazônica e usa equipamentos Mindray no laboratório. No meio de uma conversa durante uma captação, disse algo que parou tudo.
+        </p>
+        <p style="font-size:16px; color:var(--cinza); line-height:1.78; margin-bottom:24px;">
+          A Mindray tem uma tecnologia que consegue detectar, num simples hemograma, se há hemácias infectadas. Para quem vive numa região com altos índices de malária, isso não é uma funcionalidade — é <strong style="color:var(--azul);">diagnóstico rápido, assertivo, na bancada do laboratório</strong>.
+        </p>
+        <p style="font-size:16px; color:var(--cinza); line-height:1.78;">
+          Ela falou como quem conhece de perto o que a tecnologia certa significa num lugar onde o tempo entre o sintoma e o tratamento pode ser a diferença entre a vida e a morte.
+        </p>
+      </div>
+      <div>
+        <div style="background:var(--azul); border-radius:20px; padding:40px; position:relative;">
+          <div style="font-size:72px; color:rgba(77,166,213,.3); line-height:0.75; margin-bottom:20px; font-family:Georgia,serif;">"</div>
+          <blockquote style="font-size:15px; color:rgba(255,255,255,.92); font-style:italic; line-height:1.8; margin:0;">
+            A Mindray hoje tem uma tecnologia fantástica que consegue detectar, num simples hemograma, se tem hemácias infectadas ou não. Para uma região que tem alto índice de malária, isso é importantíssimo — e faz a diferença lá na bancada, no diagnóstico rápido. Traz agilidade e assertividade.
+          </blockquote>
+          <div style="margin-top:24px; padding-top:20px; border-top:1px solid rgba(255,255,255,.12);">
+            <div style="font-size:12px; color:rgba(255,255,255,.5); letter-spacing:.5px; text-transform:uppercase;">Depoimento espontâneo captado em campo · 2025</div>
+            <div style="font-size:13px; color:rgba(255,255,255,.7); margin-top:4px; font-weight:600;">Dona de clínicas · Região Amazônica · Usuária Mindray</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px; padding:32px 36px; background:rgba(0,102,161,.07); border-left:4px solid var(--azul-claro); border-radius:0 16px 16px 0;">
+      <p style="font-size:16px; color:var(--azul); line-height:1.75; font-weight:500; margin:0;">
+        Esse depoimento não é roteiro. É uma cliente real, falando da tecnologia que usa, no lugar onde ela importa de verdade. Foi a partir daí que surgiu a pergunta:
+        <em style="color:var(--azul-med);">quantas histórias assim existem no Norte, acontecendo agora, sem que ninguém as conte?</em>
+        É daí que nasce <strong>"O Norte que Pulsa"</strong>.
+      </p>
+    </div>
+
+    <style>
+      @media(max-width:680px){
+        #origem .container > div[style*="grid-template-columns:1fr 1fr"]{
+          grid-template-columns:1fr !important;
+        }
+      }
+    </style>
+  </div>
+</section>
+
+<!-- A IDEIA -->
+<section id="ideia" class="bg-fundo">
+  <div class="container">
+    <div class="section-label">02 · A Proposta</div>
+    <h2 class="section-title">A ideia</h2>
+    <div class="section-rule"></div>
+
+    <div class="quote-block">
+      <blockquote>
+        "Não é um filme sobre a Mindray. É um filme sobre pessoas.
+        <strong>A tecnologia aparece como o que ela é:</strong>
+        uma ferramenta que muda vidas em lugares onde nada chega com facilidade."
+      </blockquote>
+    </div>
+
+    <p class="section-intro">
+      <em>"O Norte que Pulsa"</em> é um filme documental de médio-metragem — ou uma série em três capítulos —
+      que acompanha <strong>três personagens reais do Norte do Brasil</strong>, cada um vivendo uma relação
+      diferente com saúde, distância e tecnologia.
+    </p>
+
+    <div class="personas-grid">
+      <div class="persona-card">
+        <div class="persona-tag">Ribeirinho</div>
+        <div class="persona-title">O tempo que<br>não volta</div>
+        <p class="persona-text">Um morador de comunidade ribeirinha no Amazonas. Sua rotina envolve o rio como estrada, a floresta como farmácia e a incerteza como companheira. A chegada de um exame rápido e confiável muda a relação dele com a saúde — e com o tempo.</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-tag">Indígena</div>
+        <div class="persona-title">A aldeia que<br>não pode esperar</div>
+        <p class="persona-text">Um membro de uma comunidade indígena no interior do Pará ou Tocantins. Entre o saber ancestral e a medicina ocidental, existe uma distância que a logística tornou ainda maior. Este personagem representa a complexidade de cuidar sem abandonar a identidade.</p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-tag">Quilombola</div>
+        <div class="persona-title">A resistência<br>que também adoece</div>
+        <p class="persona-text">Uma comunidade quilombola do Norte. De 632 territórios identificados na Amazônia Legal, apenas 25% foram titulados. A chegada de tecnologia que funciona no próprio local é mais do que praticidade — é reconhecimento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RELEVÂNCIA -->
+<section id="relevancia">
+  <div class="container">
+    <div class="section-label">03 · Relevância</div>
+    <h2 class="section-title">Por que a Mindray<br>e por que agora</h2>
+    <div class="section-rule"></div>
+    <p class="section-intro">A Mindray já está presente nesse território. Já tem histórias acontecendo por causa de sua tecnologia. <strong>Falta contá-las.</strong> E o momento para fazer isso nunca foi tão estratégico.</p>
+
+    <!-- ARGUMENTO PRINCIPAL: ativo permanente -->
+    <div style="background:var(--azul); border-radius:20px; padding:48px; margin-bottom:40px;">
+      <div style="font-size:11px; font-weight:700; color:var(--azul-claro); letter-spacing:2px; text-transform:uppercase; margin-bottom:16px;">O argumento central</div>
+      <h3 style="font-size:clamp(22px,3vw,30px); font-weight:800; color:#fff; line-height:1.25; margin-bottom:24px;">Uma campanha tem começo,<br>meio e fim.<br><span style="color:var(--azul-claro);">Um filme não tem prazo de validade.</span></h3>
+      <p style="font-size:16px; color:rgba(255,255,255,.75); line-height:1.75; max-width:680px; margin-bottom:24px;">
+        Toda campanha publicitária tem data de início e data de encerramento. Quando o budget acaba, a veiculação para — e o impacto some junto. Um filme documental de marca é diferente: ele é produzido uma vez e se torna um <strong style="color:#fff;">ativo digital permanente</strong>, disponível para sempre, continuamente relevante, sem custo adicional de mídia.
+      </p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:20px; margin-top:8px;">
+        <div style="background:rgba(255,255,255,.07); border-radius:12px; padding:20px;">
+          <div style="font-size:28px; font-weight:900; color:var(--azul-claro); margin-bottom:6px;">∞</div>
+          <div style="font-size:13px; color:rgba(255,255,255,.7); line-height:1.5;">Duração do ativo — sem prazo de expiração</div>
+        </div>
+        <div style="background:rgba(255,255,255,.07); border-radius:12px; padding:20px;">
+          <div style="font-size:28px; font-weight:900; color:var(--azul-claro); margin-bottom:6px;">86<span style="font-size:16px;">%</span></div>
+          <div style="font-size:13px; color:rgba(255,255,255,.7); line-height:1.5;">dos consumidores consideram autenticidade fator decisivo de apoio à marca</div>
+        </div>
+        <div style="background:rgba(255,255,255,.07); border-radius:12px; padding:20px;">
+          <div style="font-size:28px; font-weight:900; color:var(--azul-claro); margin-bottom:6px;">44<span style="font-size:16px;">%</span></div>
+          <div style="font-size:13px; color:rgba(255,255,255,.7); line-height:1.5;">dos profissionais de marketing dizem que branded video stories geram os melhores resultados</div>
+        </div>
+        <div style="background:rgba(255,255,255,.07); border-radius:12px; padding:20px;">
+          <div style="font-size:28px; font-weight:900; color:var(--azul-claro); margin-bottom:6px;">1<span style="font-size:14px;"> filme</span></div>
+          <div style="font-size:13px; color:rgba(255,255,255,.7); line-height:1.5;">gera dezenas de pontos de contato — cortes para redes, eventos, uso institucional</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reasons-grid">
+      <div class="reason-card">
+        <div class="reason-num">1</div>
+        <div class="reason-title">Presença sem prazo de encerramento</div>
+        <p class="reason-text">Enquanto uma campanha para de existir quando o investimento acaba, o filme continua circulando — em eventos, plataformas, treinamentos internos, mídia espontânea. É comunicação que se acumula.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num">2</div>
+        <div class="reason-title">Constrói cultura, não só imagem</div>
+        <p class="reason-text">Conteúdo documental cria identificação profunda com a marca. Não vende produto — cria pertencimento. E pertencimento gera fidelidade que nenhum anúncio consegue comprar.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num">3</div>
+        <div class="reason-title">Pressão ESG com evidência real</div>
+        <p class="reason-text">Marcas globais enfrentam demanda crescente por responsabilidade social comprovada. Um documentário é o formato mais difícil de questionar — porque mostra pessoas reais, em lugares reais.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num">4</div>
+        <div class="reason-title">Amazônia tem audiência global crescente</div>
+        <p class="reason-text">Povos tradicionais e territórios amazônicos têm audiência crescente em festivais, streaming internacional e mídia espontânea. O tema tem tração orgânica que amplifica o investimento.</p>
+      </div>
+    </div>
+
+    <!-- Precedente: Beyond the Miles -->
+    <div style="margin-top:48px; background:var(--fundo); border-radius:20px; padding:36px 40px;">
+      <div style="display:flex; gap:32px; align-items:flex-start; flex-wrap:wrap;">
+        <div style="flex:1; min-width:260px;">
+          <div style="font-size:11px; font-weight:700; color:var(--azul-claro); letter-spacing:2px; text-transform:uppercase; margin-bottom:12px;">Precedente da própria marca</div>
+          <h3 style="font-size:20px; font-weight:800; color:var(--azul); margin-bottom:12px;">A Mindray já faz branded content.<br>No mundo todo.</h3>
+          <p style="font-size:14px; color:var(--cinza); line-height:1.7; margin-bottom:16px;">
+            O filme institucional <em>Beyond the Miles</em> demonstra que a Mindray já entende o poder do audiovisual documental para construir reputação global. A proposta "O Norte que Pulsa" não é uma aposta no desconhecido — é a extensão natural dessa estratégia para o Brasil, com território e narrativa únicos.
+          </p>
+          <a href="https://www.youtube.com/watch?v=VXwLALgLpsA" target="_blank"
+            style="display:inline-flex; align-items:center; gap:8px; background:var(--azul); color:#fff; padding:10px 20px; border-radius:24px; font-size:13px; font-weight:700; text-decoration:none; transition:opacity .2s;"
+            onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
+            ▶ Assistir Beyond the Miles
           </a>
-          <a href="#ideia" class="btn-outline">Ver proposta</a>
         </div>
-      </div>
-      <div>
-        <div class="steps">
-          <div class="step">
-            <div class="step-num">01</div>
-            <div class="step-content">
-              <h4>Reunião de alinhamento</h4>
-              <p>Entender as prioridades de comunicação da Mindray em 2026 e os objetivos estratégicos do projeto.</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">02</div>
-            <div class="step-content">
-              <h4>Referências visuais e de linguagem</h4>
-              <p>Apresentação do universo visual, tom narrativo e exemplos de referência do projeto.</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">03</div>
-            <div class="step-content">
-              <h4>Proposta técnica e comercial</h4>
-              <p>Desenvolvimento detalhado do escopo, cronograma, orçamento e plano de distribuição.</p>
-            </div>
-          </div>
+        <div style="flex:1; min-width:260px; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 4px 20px rgba(26,58,92,.1); aspect-ratio:16/9;">
+          <iframe width="100%" height="100%"
+            src="https://www.youtube.com/embed/VXwLALgLpsA?rel=0&modestbranding=1"
+            title="Mindray — Beyond the Miles"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen style="display:block;"></iframe>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ─── FOOTER ─── -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div class="logo-mark" style="background: rgba(255,255,255,0.1);">
-          <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 13H6L8 9L11 16L13 11L15 13H19" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
+    <!-- Distribuição -->
+    <div style="margin-top:56px;">
+      <h3 style="font-size:18px; font-weight:700; color:var(--azul); margin-bottom:16px;">Distribuição estratégica</h3>
+      <p style="font-size:15px; color:var(--cinza); margin-bottom:24px;">O conteúdo tem potencial de circulação em múltiplos canais simultaneamente.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:10px;">
+        <span style="background:var(--fundo); padding:8px 18px; border-radius:24px; font-size:13px; font-weight:600; color:var(--azul);">Streaming</span>
+        <span style="background:var(--fundo); padding:8px 18px; border-radius:24px; font-size:13px; font-weight:600; color:var(--azul);">Festivais</span>
+        <span style="background:var(--fundo); padding:8px 18px; border-radius:24px; font-size:13px; font-weight:600; color:var(--azul);">LinkedIn</span>
+        <span style="background:var(--fundo); padding:8px 18px; border-radius:24px; font-size:13px; font-weight:600; color:var(--azul);">YouTube</span>
+        <span style="background:var(--fundo); padding:8px 18px; border-radius:24px; font-size:13px; font-weight:600; color:var(--azul);">Imprensa</span>
+        <span style="background:var(--fundo); padding:8px 18px; border-radius:24px; font-size:13px; font-weight:600; color:var(--azul);">Eventos</span>
+        <span style="background:var(--fundo); padding:8px 18px; border-radius:24px; font-size:13px; font-weight:600; color:var(--azul);">Uso institucional</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REALIZADOR -->
+<section id="realizador" class="bg-fundo">
+  <div class="container">
+    <div class="section-label">04 · Equipe</div>
+    <h2 class="section-title">Por que este realizador</h2>
+    <div class="section-rule"></div>
+    <p class="section-intro">João Werneck não é um fotógrafo que decidiu fazer documentário. É um profissional com histórico comprovado <strong>exatamente nos mundos que este projeto atravessa.</strong></p>
+
+    <div class="credentials">
+      <div class="cred-item">
+        <div class="cred-dot"></div>
         <div>
-          <div class="footer-brand-name">MINDRAY</div>
-          <div style="font-size: 0.75rem; color: rgba(255,255,255,0.4);">Brasil · 2026</div>
+          <div class="cred-label">Mindray Brasil</div>
+          <div class="cred-text">Trabalhou diretamente em projeto anterior — conhece a marca, a cultura e as pessoas.</div>
         </div>
       </div>
-      <div class="footer-info">
-        Proposta elaborada por João Werneck · Fotógrafo &amp; Diretor de Fotografia · Abril 2026
+      <div class="cred-item">
+        <div class="cred-dot"></div>
+        <div>
+          <div class="cred-label">Comunidades indígenas</div>
+          <div class="cred-text">Documentou xavantes e krahô em rituais de passagem a convite de caciques, incluindo o Daionu — ritual de passagem para a maioridade xavante.</div>
+        </div>
       </div>
-      <div class="footer-links">
-        <a href="https://www.mindray.com/en" target="_blank" rel="noopener">mindray.com</a>
-        <a href="#">Termos de Uso</a>
-        <a href="#">Privacidade</a>
+      <div class="cred-item">
+        <div class="cred-dot"></div>
+        <div>
+          <div class="cred-label">Conservação</div>
+          <div class="cred-text">Atuou em projetos de conservação ambiental — Aruana, Ilhas do Rio, Verde Mar, PMP —, comunidades pesqueiras e fauna marinha.</div>
+        </div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-dot"></div>
+        <div>
+          <div class="cred-label">Branded content</div>
+          <div class="cred-text">Dirigiu e fotografou campanhas de vídeo documental para marcas como Nescau, com foco em projetos sociais e histórias reais.</div>
+        </div>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
+<!-- ENTREGÁVEIS -->
+<section>
+  <div class="container">
+    <div class="section-label">05 · Entregáveis</div>
+    <h2 class="section-title">Formato e entregáveis</h2>
+    <div class="section-rule"></div>
+
+    <div class="deliverables-grid">
+      <div class="deliv-card">
+        <span class="deliv-badge main">Proposta principal</span>
+        <div class="deliv-title">Filme documental único</div>
+        <div class="deliv-sub">30–45 minutos</div>
+        <ul class="deliv-list">
+          <li>Roteiro em três arcos narrativos — um por personagem</li>
+          <li>Produção em locações reais no Norte do Brasil</li>
+          <li>Filme para distribuição digital, festivais e uso institucional</li>
+          <li>Versão recortada (5–8 min) para redes sociais e eventos</li>
+          <li>Fotografias de making-of para campanha de divulgação</li>
+        </ul>
+      </div>
+      <div class="deliv-card">
+        <span class="deliv-badge alt">Desdobramento possível</span>
+        <div class="deliv-title">Série em 3 capítulos</div>
+        <div class="deliv-sub">Conteúdo recorrente</div>
+        <ul class="deliv-list">
+          <li>Cada episódio centrado em um personagem</li>
+          <li>Lançamentos sequenciais para engajamento contínuo</li>
+          <li>Maior flexibilidade para múltiplas plataformas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRÓXIMOS PASSOS -->
+<section id="conversa" class="bg-fundo">
+  <div class="container">
+    <div class="section-label">06 · Conversa</div>
+    <h2 class="section-title">Próximos passos</h2>
+    <div class="section-rule"></div>
+    <p class="section-intro">Esta é uma proposta conceitual para abertura de conversa. Toda a parte criativa, de produção e de estratégia de distribuição pode ser apresentada em etapa seguinte.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">Reunião de alinhamento</div>
+          <div class="step-text">Entender as prioridades de comunicação da Mindray em 2026 e os objetivos estratégicos do projeto.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">Referências visuais e de linguagem</div>
+          <div class="step-text">Apresentação do universo visual, tom narrativo e exemplos de referência do projeto.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Proposta técnica e comercial</div>
+          <div class="step-text">Desenvolvimento detalhado do escopo, cronograma, orçamento e plano de distribuição.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Vamos conversar?</h2>
+    <p>Esta proposta foi elaborada com o objetivo de abrir um diálogo.<br>O próximo passo é uma conversa de 20 minutos.</p>
+    <div class="cta-buttons">
+      <a href="mailto:joaof.werneck@gmail.com" class="btn-primary">Iniciar conversa →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">MINDRAY Brasil · 2026 · Proposta elaborada por João Werneck · Fotógrafo & Diretor de Fotografia</div>
+  <div class="footer-sources">
+    Fontes dos dados territoriais e de saúde: IBGE — Censo Demográfico 2022 · Instituto Socioambiental / CONAQ — Territórios Quilombolas na Amazônia Legal, 2025
+    · Medicina S/A — Expansão da Saúde Digital no Norte, 2023 · Fundação Amazônia Sustentável (FAS) — Seca no Amazonas, 2023<br>
+    Fontes dos dados de mercado: Stackla Consumer Content Report (86% autenticidade) · Content Marketing Institute, 2024 (44% branded video) · Amra &amp; Elma — Documentary Marketing Statistics, 2025
+  </div>
+</footer>
+
+<script>
+// ── CHART: Quilombola ────────────────────────────────────
+new Chart(document.getElementById('chartQuilombola'), {
+  type: 'bar',
+  data: {
+    labels: ['Dados oficiais\n(INCRA)', 'Territórios reais\nidentificados'],
+    datasets: [{
+      data: [166, 632],
+      backgroundColor: ['#4DA6D5', '#1A3A5C'],
+      borderRadius: 8,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ` ${ctx.raw} territórios`
+        }
+      },
+      annotation: {}
+    },
+    scales: {
+      y: {
+        beginAtZero: true, max: 750,
+        grid: { color: 'rgba(0,0,0,.06)' },
+        ticks: { color: '#888', font: { size: 11 } }
+      },
+      x: {
+        grid: { display: false },
+        ticks: { color: '#1A3A5C', font: { size: 11, weight: '600' } }
+      }
+    }
+  }
+});
+
+// ── CHART: Indígena ──────────────────────────────────────
+new Chart(document.getElementById('chartIndigena'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Norte 44,5%', 'Nordeste 17,3%', 'Centro-Oeste 14,1%', 'Sul 12,8%', 'Sudeste 11,3%'],
+    datasets: [{
+      data: [44.5, 17.3, 14.1, 12.8, 11.3],
+      backgroundColor: ['#1A3A5C', '#0066A1', '#4DA6D5', '#7EC8E3', '#B0DFF0'],
+      borderWidth: 2,
+      borderColor: '#F5F7FA',
+      hoverOffset: 8
+    }]
+  },
+  options: {
+    responsive: true,
+    cutout: '60%',
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: { font: { size: 10 }, color: '#555', boxWidth: 12, padding: 8 }
+      },
+      tooltip: {
+        callbacks: { label: ctx => ` ${ctx.label}` }
+      }
+    }
+  }
+});
+
+// ── CHART: Saúde ─────────────────────────────────────────
+new Chart(document.getElementById('chartSaude'), {
+  type: 'bar',
+  data: {
+    labels: ['Norte', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Sul'],
+    datasets: [{
+      data: [60, 52, 38, 22, 18],
+      backgroundColor: ctx => ctx.dataIndex === 0 ? '#1A3A5C' : '#4DA6D5',
+      borderRadius: 6,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: { label: ctx => ` ${ctx.raw}% dos municípios` }
+      }
+    },
+    scales: {
+      x: {
+        beginAtZero: true, max: 75,
+        grid: { color: 'rgba(0,0,0,.06)' },
+        ticks: {
+          color: '#888', font: { size: 11 },
+          callback: val => val + '%'
+        }
+      },
+      y: {
+        grid: { display: false },
+        ticks: { color: '#1A3A5C', font: { size: 12, weight: '600' } }
+      }
+    }
+  }
+});
+
+// ── SCROLL ANIMATIONS ────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.stat-card, .persona-card, .reason-card, .cred-item, .step, .deliv-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity .5s ease, transform .5s ease';
+  observer.observe(el);
+});
+</script>
 </body>
 </html>
